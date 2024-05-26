@@ -19,4 +19,4 @@
 ---
 include:
   - board: blackpill_f401cc
-    shield: boardsource3x4
+    shield: boardsource2x3

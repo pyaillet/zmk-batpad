@@ -17,7 +17,7 @@
 
         diode-direction = "col2row";
 
-         row-gpios
+        row-gpios
             = <&blackpill 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&blackpill 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
@@ -27,5 +27,25 @@
             , <&blackpill 16 GPIO_ACTIVE_HIGH>
             , <&blackpill 15 GPIO_ACTIVE_HIGH>
             ;
+    };
+
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        steps = <80>;
+        a-gpios = <&blackpill 42 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&blackpill 41 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    };
+
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        steps = <80>;
+        a-gpios = <&blackpill 40 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&blackpill 39 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <25>;
     };
 };
